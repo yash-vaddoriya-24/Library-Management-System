@@ -104,6 +104,7 @@ public class BookManagement implements BookManager {
                 if ("true".equals(bookDetails.get("isBorrow"))) {
                     bookDetails.put("isBorrow", "false");
                     bookOfLib.put(entry.getKey(), bookDetails);
+                    System.out.println("Book returned Successful...");
                     return true; // Successfully returned
                 } else {
                     throw new IllegalStateException("This book wasn't borrowed.");
