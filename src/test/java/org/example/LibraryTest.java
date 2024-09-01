@@ -14,10 +14,11 @@ public class LibraryTest {
 
     Library library;
     BookManager bm;
-
+    BookRepo br;
     @BeforeEach
     void setUp() {
         bm  = new BookManagement();
+        br = new viewBooks();
     }
 
     @BeforeAll
@@ -40,6 +41,13 @@ public class LibraryTest {
     public void addBooksFromCsv(String title, String author, String publishyear) {
         library = new Library(title, author, publishyear);
         assertTrue(bm.addBookDetails(library, LibraryBook));
+    }
+
+    @Test
+    @Order(3)
+    @DisplayName("Get All Available Books")
+    public void getAllAvailableBooks() {
+        br.viewAvailableBooks(LibraryBook);
     }
 
     @AfterEach
