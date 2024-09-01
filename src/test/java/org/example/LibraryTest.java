@@ -51,8 +51,16 @@ public class LibraryTest {
         assertTrue(bm.borrowBook("Five Point Someone", LibraryBook));
     }
 
-    @Test
+    @DisplayName("Borrow Book From CSV")
+    @ParameterizedTest
     @Order(4)
+    @CsvFileSource(resources = "/Borrow.csv")
+    public void borrowBookFromCsv(String title) {
+        assertTrue(bm.borrowBook(title, LibraryBook));
+    }
+
+    @Test
+    @Order(5)
     @DisplayName("Get All Available Books")
     public void getAllAvailableBooks() {
         br.viewAvailableBooks(LibraryBook);
