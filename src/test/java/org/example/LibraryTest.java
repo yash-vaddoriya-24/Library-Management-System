@@ -101,10 +101,25 @@ public class LibraryTest {
 //        System.out.println("Searching...........");
 //        assertTrue(br.SearchBook("Mody Dick", LibraryBook));
 //    }
+    //return book which is not available in Library
+    @Test
+    @Order(6)
+    @DisplayName("return Borrowed Book")
+    public void returnBorrowedBook1984() {
+        assertTrue(bm.returnBook("1984", LibraryBook));
+    }
+
+    //return book which is available in Library
+    @Test
+    @Order(7)
+    @DisplayName("return Borrowed Book")
+    public void returnBorrowedBookAlchemist() {
+        assertTrue(bm.returnBook("The Alchemist", LibraryBook));
+    }
 
     //Get All Avaialable Books
     @Test
-    @Order(6)
+    @Order(8)
     @DisplayName("Get All Available Books")
     public void getAllAvailableBooks() {
         br.viewAvailableBooks(LibraryBook);
@@ -112,7 +127,7 @@ public class LibraryTest {
 
     //Get All Borrowed Books
     @Test
-    @Order(7)
+    @Order(9)
     @DisplayName("Display All Borrowed Books")
     public void getBorrowedBooks() {
         br.viewBorrowedBooks(LibraryBook);
