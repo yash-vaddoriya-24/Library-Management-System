@@ -9,6 +9,7 @@ import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class LibraryTest {
     private static final Map<String, Map<String, String>> LibraryBook = new HashMap<>();
 
@@ -45,6 +46,13 @@ public class LibraryTest {
 
     @Test
     @Order(3)
+    @DisplayName("User tries to borrow book")
+    public void borrowBookTest() {
+        assertTrue(bm.borrowBook("Five Point Someone", LibraryBook));
+    }
+
+    @Test
+    @Order(4)
     @DisplayName("Get All Available Books")
     public void getAllAvailableBooks() {
         br.viewAvailableBooks(LibraryBook);
