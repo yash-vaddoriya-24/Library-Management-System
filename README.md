@@ -60,6 +60,7 @@ Create a simple library management system that allows users to perform basic ope
  - Borrow Book: Borrow available books and track their status.
  - View Books: List all available and borrowed books.
  - Search Book: User Can Search Book details using title of book.
+ - return Borrow Book: User can also return Borrow book by giving title of book.
  - Exception Handling: Handle All Exception cases where books are not found or already borrowed.
 ## Project Structure
 
@@ -92,6 +93,9 @@ Create a simple library management system that allows users to perform basic ope
 - View Borrowed Books:
     ```java
     br.viewBorrowedBooks(LibraryBook);
+- return Borrowed Books:
+    ```java
+    br.returnBooks(title,LibraryBook);
 
 ## Testing
 
