@@ -86,6 +86,7 @@ public class BookManagement implements BookManager {
         }
 
         if (!bookFound) {
+            System.out.println("Book is Not Available");
             throw new BookNotFoundException("Book with the given title not found.");
         } else {
             throw new BookNotFoundException("All copies of this book are currently borrowed.");

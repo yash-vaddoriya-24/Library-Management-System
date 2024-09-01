@@ -7,7 +7,7 @@ import org.junit.jupiter.params.provider.CsvFileSource;
 import java.util.HashMap;
 import java.util.Map;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class LibraryTest {
@@ -61,11 +61,28 @@ public class LibraryTest {
 
     @Test
     @Order(5)
+    @DisplayName("User tries to borrow a book not in the library")
+    public void borrowNonExistentBook() {
+        Exception exception = assertThrows(BookNotFoundException.class, () -> {
+            bm.borrowBook("Some Non-Existent Book", LibraryBook);
+        });
+
+        assertEquals("Book with the given title not found.", exception.getMessage());
+    }
+
+    @Test
+    @Order(6)
     @DisplayName("Get All Available Books")
     public void getAllAvailableBooks() {
         br.viewAvailableBooks(LibraryBook);
     }
 
+    @Test
+    @Order(7)
+    @DisplayName("Display All Borrowed Books")
+    public void getBorrowedBooks() {
+        br.viewBorrowedBooks(LibraryBook);
+    }
     @AfterEach
     void tearDown() {
         bm = null;
