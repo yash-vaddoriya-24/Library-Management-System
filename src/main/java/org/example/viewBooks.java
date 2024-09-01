@@ -5,7 +5,14 @@ import java.util.Map;
 interface BookRepo{
     void viewAvailableBooks(Map<String, Map<String, String>> books);
     void viewBorrowedBooks(Map<String, Map<String, String>> books);
+    boolean SearchBook(String title, Map<String, Map<String, String>> books);
 }
+class BookAlreadyBorrowedException extends RuntimeException {
+    public BookAlreadyBorrowedException(String message) {
+        super(message);
+    }
+}
+
 public class viewBooks implements BookRepo {
     // Displays books available in the library
     public void viewAvailableBooks(Map<String, Map<String, String>> BookOfLib){
@@ -39,5 +46,27 @@ public class viewBooks implements BookRepo {
                 printBookDetails(entry);
             }
         }
+    }
+
+    public boolean SearchBook(String title, Map<String, Map<String, String>> bookOfLib) {
+        title = title.trim().toLowerCase();
+
+        for (Map.Entry<String, Map<String, String>> entry : bookOfLib.entrySet()) {
+            Map<String, String> bookDetails = entry.getValue();
+            String bookTitle = bookDetails.get("title").toLowerCase();
+
+            if (title.equals(bookTitle)) {
+                boolean isBorrowed = Boolean.parseBoolean(bookDetails.get("isBorrow"));
+                if (!isBorrowed) {
+                    printHeader();
+                    printBookDetails(entry);
+                    return true; // Book found and available
+                } else {
+                    throw new BookAlreadyBorrowedException("The book '" + title + "' is already borrowed.");
+                }
+            }
+        }
+
+        throw new BookNotFoundException("Book with the title '" + title + "' not found.");
     }
 }

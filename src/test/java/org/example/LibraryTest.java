@@ -69,7 +69,6 @@ public class LibraryTest {
 
         assertEquals("Book with the given title not found.", exception.getMessage());
     }
-
     @Test
     @Order(6)
     @DisplayName("Get All Available Books")
@@ -83,6 +82,7 @@ public class LibraryTest {
     public void getBorrowedBooks() {
         br.viewBorrowedBooks(LibraryBook);
     }
+
     @AfterEach
     void tearDown() {
         bm = null;
