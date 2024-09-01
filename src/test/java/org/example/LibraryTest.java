@@ -69,19 +69,44 @@ public class LibraryTest {
 
         assertEquals("Book with the given title not found.", exception.getMessage());
     }
+
     @Test
     @Order(6)
-    @DisplayName("Get All Available Books")
-    public void getAllAvailableBooks() {
-        br.viewAvailableBooks(LibraryBook);
+    @DisplayName("Search For Book 1984")
+    public void searchForBook1984() {
+        System.out.println("Searching...........");
+        assertTrue(br.SearchBook("1984", LibraryBook));
     }
 
     @Test
     @Order(7)
-    @DisplayName("Display All Borrowed Books")
-    public void getBorrowedBooks() {
-        br.viewBorrowedBooks(LibraryBook);
+    @DisplayName("Search For Book Five Point Someone")
+    public void searchForBookFPS() {
+        System.out.println("Searching...........");
+        assertTrue(br.SearchBook("Five Point Someone", LibraryBook));
     }
+
+    @Test
+    @Order(8)
+    @DisplayName("Search For Book Moby Dick")
+    public void searchForBookMobyDick() {
+        System.out.println("Searching...........");
+        assertTrue(br.SearchBook("Mody Dick", LibraryBook));
+    }
+
+//    @Test
+//    @Order(6)
+//    @DisplayName("Get All Available Books")
+//    public void getAllAvailableBooks() {
+//        br.viewAvailableBooks(LibraryBook);
+//    }
+//
+//    @Test
+//    @Order(7)
+//    @DisplayName("Display All Borrowed Books")
+//    public void getBorrowedBooks() {
+//        br.viewBorrowedBooks(LibraryBook);
+//    }
 
     @AfterEach
     void tearDown() {
