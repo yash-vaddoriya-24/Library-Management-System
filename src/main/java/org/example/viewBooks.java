@@ -50,7 +50,9 @@ public class viewBooks implements BookRepo {
 
     public boolean SearchBook(String title, Map<String, Map<String, String>> bookOfLib) {
         title = title.trim().toLowerCase();
-
+        if(title.isEmpty()){
+            throw new RuntimeException("Title cannot be empty");
+        }
         for (Map.Entry<String, Map<String, String>> entry : bookOfLib.entrySet()) {
             Map<String, String> bookDetails = entry.getValue();
             String bookTitle = bookDetails.get("title").toLowerCase();
