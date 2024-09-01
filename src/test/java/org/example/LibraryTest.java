@@ -48,7 +48,7 @@ public class LibraryTest {
     @Order(3)
     @DisplayName("User tries to borrow book")
     public void borrowBookTest() {
-        assertTrue(bm.borrowBook("Moby Dick", LibraryBook));
+        assertTrue(bm.borrowBook("Five Point Someone", LibraryBook));
     }
 
     @DisplayName("Borrow Book From CSV")

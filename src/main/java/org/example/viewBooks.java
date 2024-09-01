@@ -4,6 +4,7 @@ import java.util.Map;
 
 interface BookRepo{
     void viewAvailableBooks(Map<String, Map<String, String>> books);
+    void viewBorrowedBooks(Map<String, Map<String, String>> books);
 }
 public class viewBooks implements BookRepo {
     // Displays books available in the library
@@ -29,4 +30,14 @@ public class viewBooks implements BookRepo {
         System.out.printf("%-15s | %-30s | %-20s | %-30s%n", isbn, bookDetails.get("title"), bookDetails.get("author"), bookDetails.get("publisherYear"));
     }
 
+    //Displays books that have been borrowed
+    public void viewBorrowedBooks(Map<String, Map<String, String>> BookOfLib){
+        System.out.println("Borrow Books Details:");
+        printHeader();
+        for (Map.Entry<String, Map<String, String>> entry : BookOfLib.entrySet()) {
+            if(Boolean.parseBoolean(entry.getValue().get("isBorrow"))) {
+                printBookDetails(entry);
+            }
+        }
+    }
 }
