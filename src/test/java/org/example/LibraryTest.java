@@ -2,7 +2,8 @@ package org.example;
 
 
 import org.junit.jupiter.api.*;
-
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvFileSource;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -29,6 +30,15 @@ public class LibraryTest {
     @DisplayName("Add first Book")
     public void addFirstBook() {
         library = new Library("Five Point Someone", "Chetan Bhagat", "2004");
+        assertTrue(bm.addBookDetails(library, LibraryBook));
+    }
+
+    @DisplayName("Add Books from CSV")
+    @ParameterizedTest
+    @Order(2)
+    @CsvFileSource(resources = "/Book.csv")
+    public void addBooksFromCsv(String title, String author, String publishyear) {
+        library = new Library(title, author, publishyear);
         assertTrue(bm.addBookDetails(library, LibraryBook));
     }
 
