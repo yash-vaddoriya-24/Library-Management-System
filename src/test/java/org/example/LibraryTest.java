@@ -104,7 +104,7 @@ public class LibraryTest {
 
     //Get All Avaialable Books
     @Test
-    @Order(7)
+    @Order(6)
     @DisplayName("Get All Available Books")
     public void getAllAvailableBooks() {
         br.viewAvailableBooks(LibraryBook);
@@ -112,11 +112,13 @@ public class LibraryTest {
 
     //Get All Borrowed Books
     @Test
-    @Order(8)
+    @Order(7)
     @DisplayName("Display All Borrowed Books")
     public void getBorrowedBooks() {
         br.viewBorrowedBooks(LibraryBook);
     }
+
+
 
     @AfterEach
     void tearDown() {

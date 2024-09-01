@@ -7,6 +7,7 @@ import java.util.HashMap;
 interface BookManager {
     boolean addBookDetails(Library library, Map<String, Map<String, String>> bookDetails);
     boolean borrowBook(String title, Map<String, Map<String, String>> bookOfLib);
+    boolean returnBook(String title, Map<String, Map<String, String>> bookOfLib);
 }
 
 class BookAlreadyExistsException extends RuntimeException {
@@ -92,4 +93,25 @@ public class BookManagement implements BookManager {
             throw new BookNotFoundException("All copies of this book are currently borrowed.");
         }
     }
+
+    public boolean returnBook(String title, Map<String, Map<String, String>> bookOfLib) {
+        title = title.trim().toLowerCase();
+
+        for (Map.Entry<String, Map<String, String>> entry : bookOfLib.entrySet()) {
+            Map<String, String> bookDetails = entry.getValue();
+
+            if (title.equals(bookDetails.get("title"))) {
+                if ("true".equals(bookDetails.get("isBorrow"))) {
+                    bookDetails.put("isBorrow", "false");
+                    bookOfLib.put(entry.getKey(), bookDetails);
+                    return true; // Successfully returned
+                } else {
+                    throw new IllegalStateException("This book wasn't borrowed.");
+                }
+            }
+        }
+
+        throw new BookNotFoundException("Book with the given title not found.");
+    }
+
 }
